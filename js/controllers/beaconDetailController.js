@@ -41,64 +41,21 @@ angular.module('myApp').controller('beaconDetailController', ['$scope', '$timeou
     }
 
     function updateTemperatureGraph() {
-        var TEMP_GRAPH_URL = "https://api-m2x.att.com/v2/charts/d1edaffde45a1b34158bcbb959b3e582.png";
-        var tempGraphUrl = TEMP_GRAPH_URL + "?rand=" + Math.random();
-
+        var startTime = "";
+        var endTime = "";
+        var TEMP_GRAPH_URL = "https://api-m2x.att.com/v2/charts/22306a265b42ab427dd9cba98facf0f6.png?width=600&height=500&type=values";
+        var tempGraphUrl = TEMP_GRAPH_URL + "&start=" + "2017-04-22T19%3A00%3A00.000Z" + "&end=" + "2017-04-22T21%3A06%3A10.487Z";
+        
         var tempGraph = document.getElementById('tempGraph');
         tempGraph.src = tempGraphUrl;
 
         $timeout(updateTemperatureGraph, 5000);
     }
 
-    function updateHumidityGraph() {
-        var TEMP_GRAPH_URL = "https://api-m2x.att.com/v2/charts/d1edaffde45a1b34158bcbb959b3e582.png";
-        var tempGraphUrl = TEMP_GRAPH_URL + "?rand=" + Math.random();
-
-        var tempGraph = document.getElementById('humidGraph');
-        tempGraph.src = tempGraphUrl;
-
-        $timeout(updateHumidityGraph, 5000);
-    }
-
-    function updateTemperatureGraph2() {
-        var TEMP_GRAPH_URL = "https://api-m2x.att.com/v2/charts/d1edaffde45a1b34158bcbb959b3e582.png";
-        var tempGraphUrl = TEMP_GRAPH_URL + "?rand=" + Math.random();
-
-        var tempGraph = document.getElementById('tempGraph2');
-        tempGraph.src = tempGraphUrl;
-
-        $timeout(updateTemperatureGraph2, 1500);
-    }
-
-    function updateTemperatureGraph3() {
-        var TEMP_GRAPH_URL = "https://api-m2x.att.com/v2/charts/d1edaffde45a1b34158bcbb959b3e582.png";
-        var tempGraphUrl = TEMP_GRAPH_URL + "?rand=" + Math.random();
-
-        var tempGraph = document.getElementById('tempGraph3');
-        tempGraph.src = tempGraphUrl;
-
-        $timeout(updateTemperatureGraph3, 5000);
-    }
-
-    function updateBatteryGraph() {
-        var TEMP_GRAPH_URL = "https://api-m2x.att.com/v2/charts/d1edaffde45a1b34158bcbb959b3e582.png";
-        var tempGraphUrl = TEMP_GRAPH_URL + "?rand=" + Math.random();
-
-        var tempGraph = document.getElementById('batteryGraph');
-        tempGraph.src = tempGraphUrl;
-
-        $timeout(updateBatteryGraph, 5000);
-    }
-
     function convertM2XToMaps(point) {
         return {
-<<<<<<< 3da6e575a5a8e0614e0fd9828b74ba4d6904db7b
             lat: Number(point.values.Longitude), // TODO: FIX THIS WHEN YOU FLIP THEM BACK
             lng: Number(point.values.Latitude)
-=======
-            lng: Number(point.values.Latitude),
-            lat: Number(point.values.Longitude)
->>>>>>> Updates beacon list to pull from all ze datas
         };
     }
 
