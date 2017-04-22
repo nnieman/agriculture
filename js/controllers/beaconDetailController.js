@@ -13,14 +13,14 @@ angular.module('myApp').controller('beaconDetailController', ['$scope', '$timeou
             {lat: -27.467, lng: 153.027} // FOR GOOGLE MAPS TO DISPLAY
             ];*/
             /*var points = [
-                {lat: 37.772, lng: -122.214},
+                {lat: -86.772, lng: 39.214},
                 {lat: 21.291, lng: -157.821},
             ];*/
 
-            var points = [
-            {lat: -86.008260771712, lng: 39.966373192183},
-            {lat: -80.008260771712, lng: 45.966373192183}, // EXAMPLE POINTS FROM ASIA TO NORTH AMERICA
-            ];
+            /*var points = [
+            {lng: -86.008, lat: 39.966},
+            {lng: -80.008, lat: 45.966}, // EXAMPLE POINTS FROM ASIA TO NORTH AMERICA
+            ];*/
 
             var line = new google.maps.Polyline({
                 path: points,
@@ -31,7 +31,7 @@ angular.module('myApp').controller('beaconDetailController', ['$scope', '$timeou
             });
             line.setMap(map);
 
-            $timeout(updateBeaconRoute, 5000);
+            $timeout(updateBeaconRoute, 1500);
         });
     }
 
@@ -45,10 +45,50 @@ angular.module('myApp').controller('beaconDetailController', ['$scope', '$timeou
         $timeout(updateTemperatureGraph, 5000);
     }
 
+    function updateHumidityGraph() {
+        var TEMP_GRAPH_URL = "https://api-m2x.att.com/v2/charts/d1edaffde45a1b34158bcbb959b3e582.png";
+        var tempGraphUrl = TEMP_GRAPH_URL + "?rand=" + Math.random();
+
+        var tempGraph = document.getElementById('humidGraph');
+        tempGraph.src = tempGraphUrl;
+
+        $timeout(updateHumidityGraph, 5000);
+    }
+
+    function updateTemperatureGraph2() {
+        var TEMP_GRAPH_URL = "https://api-m2x.att.com/v2/charts/d1edaffde45a1b34158bcbb959b3e582.png";
+        var tempGraphUrl = TEMP_GRAPH_URL + "?rand=" + Math.random();
+
+        var tempGraph = document.getElementById('tempGraph2');
+        tempGraph.src = tempGraphUrl;
+
+        $timeout(updateTemperatureGraph2, 1500);
+    }
+
+    function updateTemperatureGraph3() {
+        var TEMP_GRAPH_URL = "https://api-m2x.att.com/v2/charts/d1edaffde45a1b34158bcbb959b3e582.png";
+        var tempGraphUrl = TEMP_GRAPH_URL + "?rand=" + Math.random();
+
+        var tempGraph = document.getElementById('tempGraph3');
+        tempGraph.src = tempGraphUrl;
+
+        $timeout(updateTemperatureGraph3, 5000);
+    }
+
+    function updateBatteryGraph() {
+        var TEMP_GRAPH_URL = "https://api-m2x.att.com/v2/charts/d1edaffde45a1b34158bcbb959b3e582.png";
+        var tempGraphUrl = TEMP_GRAPH_URL + "?rand=" + Math.random();
+
+        var tempGraph = document.getElementById('batteryGraph');
+        tempGraph.src = tempGraphUrl;
+
+        $timeout(updateBatteryGraph, 5000);
+    }
+
     function convertM2XToMaps(point) {
         return {
-            lat: Number(point.values.Latitude),
-            lng: Number(point.values.Longitude)
+            lat: Number(point.values.Longitude), // TODO: FIX THIS WHEN YOU FLIP THEM BACK
+            lng: Number(point.values.Latitude)
         };
     }
 
@@ -60,4 +100,8 @@ angular.module('myApp').controller('beaconDetailController', ['$scope', '$timeou
 
     updateBeaconRoute();
     updateTemperatureGraph();
+    updateHumidityGraph();
+    updateTemperatureGraph2();
+    updateTemperatureGraph3();
+    updateBatteryGraph();
 }]);

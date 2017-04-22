@@ -8,7 +8,8 @@ function ($http, M2X_API_KEY, M2X_DEVICE_ID, M2X_API_BASE) {
             }
         }).then(function(geoData) {
             return _.filter(geoData.data.values, function (value) {
-                return _.has(value, 'values.Latitude') && _.has(value, 'values.Longitude');
+                return _.has(value, 'values.Latitude') && _.has(value, 'values.Longitude')
+                    && value.values.Latitude < 0;
             });
         })
     };
