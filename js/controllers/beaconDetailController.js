@@ -4,23 +4,28 @@ angular.module('myApp').controller('beaconDetailController', ['$scope', '$timeou
 
     function updateBeaconRoute() {
         m2x.getGeoLocationPoints().then(function(geoLocationPoints) {
+            geoLocationPoints = _.filter(geoLocationPoints, function(point) {
+                console.log(point.values.DeviceID, $scope.beaconId);
+                return point.values.DeviceID == $scope.beaconId;
+            })
             var points = _.map(geoLocationPoints, convertM2XToMaps);
             
-            /*var points = [
-            {lat: 37.772, lng: -122.214},
-            {lat: 21.291, lng: -157.821}, // EXAMPLE POINTS FROM ASIA TO NORTH AMERICA
-            {lat: -18.142, lng: 178.431}, // IT LOOKS LIKE THE COORDINATES WE HAVE ARE TOO CLOSE TOGETHER
-            {lat: -27.467, lng: 153.027} // FOR GOOGLE MAPS TO DISPLAY
-            ];*/
-            /*var points = [
-                {lat: -86.772, lng: 39.214},
-                {lat: 21.291, lng: -157.821},
-            ];*/
+            console.log(points);
+            // var points = [
+            // {lat: 37.772, lng: -122.214},
+            // {lat: 21.291, lng: -157.821}, // EXAMPLE POINTS FROM ASIA TO NORTH AMERICA
+            // {lat: -18.142, lng: 178.431}, // IT LOOKS LIKE THE COORDINATES WE HAVE ARE TOO CLOSE TOGETHER
+            // {lat: -27.467, lng: 153.027} // FOR GOOGLE MAPS TO DISPLAY
+            // ];
+            // var points = [
+            //     {lat: 37.772, lng: -122.214},
+            //     {lat: 21.291, lng: -157.821},
+            // ];
 
-            /*var points = [
-            {lng: -86.008, lat: 39.966},
-            {lng: -80.008, lat: 45.966}, // EXAMPLE POINTS FROM ASIA TO NORTH AMERICA
-            ];*/
+            // var points = [
+            // {lng: -86.008260771712, lat: 39.966373192183},
+            // {lng: -80.008260771712, lat: 45.966373192183} // EXAMPLE POINTS FROM ASIA TO NORTH AMERICA
+            // ];
 
             var line = new google.maps.Polyline({
                 path: points,
@@ -87,8 +92,13 @@ angular.module('myApp').controller('beaconDetailController', ['$scope', '$timeou
 
     function convertM2XToMaps(point) {
         return {
+<<<<<<< 3da6e575a5a8e0614e0fd9828b74ba4d6904db7b
             lat: Number(point.values.Longitude), // TODO: FIX THIS WHEN YOU FLIP THEM BACK
             lng: Number(point.values.Latitude)
+=======
+            lng: Number(point.values.Latitude),
+            lat: Number(point.values.Longitude)
+>>>>>>> Updates beacon list to pull from all ze datas
         };
     }
 
