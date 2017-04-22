@@ -5,7 +5,7 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
   $locationProvider.hashPrefix('!');
 
   $routeProvider.when('/beacons/', {
-    controller: 'listBeaconController',
+    controller: 'listBeaconsController',
     templateUrl: 'templates/listBeacons.html'
   }).when('/beacons/:beaconId/', {
     controller: 'beaconDetailController',
