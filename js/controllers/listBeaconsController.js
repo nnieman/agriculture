@@ -12,7 +12,7 @@ angular.module('myApp').controller('listBeaconsController', ['$scope', 'm2x', '$
             var processed = "";
             for (var i = 0; i < points.length; i++) {
                 if (points[i].id == id) continue;
-                if (i > 0) {
+                if (i > 0 && id.substring(0,4) != "stop") {
                     $scope.beacons.push({
                         id: id,
                         activation_datetime: moment(activated),
